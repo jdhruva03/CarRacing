@@ -14,16 +14,17 @@ import os
 #---
 env = gym.make("CarRacing-v2", domain_randomize=False, continuous=False, render_mode="human")
 
-print("Training")
-log_path = "C://CarRacing//Logs//"
-model = PPO("CnnPolicy", env, verbose=1, device="cuda")
-model.learn(total_timesteps=500000)
+# print("Training")
+# log_path = "C://CarRacing//Logs//"
+# model = PPO("CnnPolicy", env, verbose=1, device="cuda")
+# model.learn(total_timesteps=500000)
 
-ppo_path = "C://CarRacing//Models//ppo_model_500000"
-model.save(ppo_path)
+# ppo_path = "C://CarRacing//Models//ppo_model_500000"
+# model.save(ppo_path)
 
 print("Evaluating")
-evaluate_policy(model, env, n_eval_episodes=10, render=True)
+model = PPO.load("C://CarRacing//Models//PPO//df//ppo_number_2_steps100000")
+evaluate_policy(model, env, n_eval_episodes=1, render=True)
 env.close()
 
 
